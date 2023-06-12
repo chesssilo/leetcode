@@ -1,0 +1,7 @@
+# Runtime 1861ms Beats 18.39%
+SELECT name, SUM(amount) AS balance
+FROM Users AS u
+JOIN Transactions AS t
+ON u.account = t.account
+GROUP BY name
+HAVING balance > 10000
