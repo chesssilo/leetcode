@@ -1,5 +1,5 @@
 // Time complexity : O(n)
-// Space complexity : O(n)O(n)O(n)
+// Space complexity : O(n)
 class Solution {
 public:
     int minDifference = INT_MAX;
