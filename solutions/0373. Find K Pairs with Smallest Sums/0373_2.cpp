@@ -1,3 +1,5 @@
+// Time complexity: O(min⁡(k⋅log⁡k,m⋅n⋅log⁡(m⋅n)))
+// Space complexity: O(min⁡(k,m⋅n))
 class Solution {
 public:
     vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {

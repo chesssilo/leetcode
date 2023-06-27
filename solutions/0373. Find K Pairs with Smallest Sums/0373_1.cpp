@@ -1,3 +1,6 @@
+// Time complexity: O(klogk)
+// Space complexity: O(k)
+
 struct T {
   int i;
   int j;
