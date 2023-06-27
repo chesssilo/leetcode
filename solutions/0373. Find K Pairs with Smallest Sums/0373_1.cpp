@@ -7,8 +7,7 @@ struct T {
 
 class Solution {
  public:
-  vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2,
-                                     int k) {
+  vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
     vector<vector<int>> ans;
     auto compare = [&](const T& a, const T& b) { return a.sum > b.sum; };
     priority_queue<T, vector<T>, decltype(compare)> minHeap(compare);
@@ -23,7 +22,6 @@ class Solution {
       if (j + 1 < nums2.size())
         minHeap.emplace(i, j + 1, nums1[i] + nums2[j + 1]);
     }
-
     return ans;
   }
 };
