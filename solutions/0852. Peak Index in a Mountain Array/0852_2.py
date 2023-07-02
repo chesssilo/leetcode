@@ -1,15 +1,16 @@
+
 # Time complexity: O(log⁡n)
 # Space complexity: O(1)
 class Solution :
     def peakIndexInMountainArray(self, arr: List[int]) -> int:
-        start = 0
-        end = len(arr)
+        left = 0
+        right = len(arr)
 
-        while start < end:
-            mid = (start + end) // 2
+        while left < right:
+            mid = (left + right) // 2
             if arr[mid] < arr[mid + 1]: 
-                start = mid + 1
+                left = mid + 1
             else:
-                end = mid
+                right = mid
 
-        return start
+        return left
