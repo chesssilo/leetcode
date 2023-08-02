@@ -1,6 +1,5 @@
 // Time Complexity: O(m∗n)
 // Space Complexity: O(n).
-
 class Solution {
 public:
   bool isToeplitzMatrix(vector<vector<int>>& matrix) {
