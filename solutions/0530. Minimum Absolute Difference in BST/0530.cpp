@@ -6,12 +6,12 @@ public:
     TreeNode* prevNode;
 
     void inorderTraversal(TreeNode* node) {
-        if (node == NULL) {
+        if (node == nullptr) {
             return;
         }
 
         inorderTraversal(node->left);
-        if (prevNode != NULL) {
+        if (prevNode != nullptr) {
             minDifference = min(minDifference, node->val - prevNode->val);
         }
         prevNode = node;
