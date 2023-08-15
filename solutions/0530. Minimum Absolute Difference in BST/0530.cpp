@@ -1,7 +1,6 @@
 // Time complexity: O(n)
 // Space complexity: O(n)
 class Solution {
-public:
     int minDifference = INT_MAX;
     TreeNode* prevNode;
 
@@ -17,7 +16,7 @@ public:
         prevNode = node;
         inorderTraversal(node->right);
     }
-
+public:
     int getMinimumDifference(TreeNode* root) {
         inorderTraversal(root);
         return minDifference;
