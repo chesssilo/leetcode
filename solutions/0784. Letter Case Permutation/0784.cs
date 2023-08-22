@@ -1,3 +1,5 @@
+// Time complexity: O(n)
+// Space complexity: O(n)
 public class Solution {
     List<string> res = new List<string>();
     public IList<string> LetterCasePermutation(string s) {

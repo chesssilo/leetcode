@@ -1,3 +1,5 @@
+# Time complexity: O(n)
+# Space complexity: O(1)
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         left, right = head, head
