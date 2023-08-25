@@ -1,13 +1,15 @@
+// Time complexity: O(n)
+// Space complexity: O(1)
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
-        int sellOne = 0;
-        int holdOne = INT_MIN;
-
-        for (const int price : prices) {
-            sellOne = max(sellOne, holdOne + price);
-            holdOne = max(holdOne, -price);
+    int maxProfit(const vector<int>& prices) {
+        int ans = 0;
+        int prevMin = prices[0];
+        
+        for (int price : prices) {
+            ans = max(ans, price - prevMin);
+            prevMin = min(prevMin, price);
         }
-        return sellOne;
+        return ans; 
     }
 };
