@@ -1,27 +1,18 @@
 // Time complexity: O(nlogk)
-// Space complexity: O(k)
+// Space complexity: O(n)
 class KthLargest {
-    multiset<int> topK;
+    vector<int> nums;
     int k;
 
 public:
-    KthLargest(int k, const vector<int> &nums) : k(k) {
-        for (int num : nums) {
-            topK.insert(num);
-            if (topK.size() > k) {
-                topK.erase(topK.begin());
-            }
-        }
-    }
+    KthLargest(int k, const vector<int>& nums) 
+      : k(k)
+      , nums(nums)
+    {}
 
     int add(int val) {
-        if (topK.size() == k && val <= *topK.begin())
-            return *topK.begin();
-        topK.insert(val);
-        if (topK.size() > k)
-            topK.erase(topK.begin());
-
-        assert(topK.size() == k);  
-        return *topK.begin();
-    }
+        nums.push_back(val);
+        nth_element(nums.begin(), nums.begin() + k - 1, nums.end(), greater<int>());
+        return nums[k - 1];
+    }          
 };
