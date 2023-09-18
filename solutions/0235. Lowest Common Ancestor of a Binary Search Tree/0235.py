@@ -1,5 +1,5 @@
-# Time complexity: O(logn)
-# Space complexity: O(1)
+# Time complexity: O(h)
+# Space complexity: O(h)
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         if p.val < root.val and q.val < root.val:
