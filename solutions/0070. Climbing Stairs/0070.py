@@ -1,3 +1,5 @@
+# Time complexity: O(n)
+# Space complexity: O(1)
 class Solution:
     def climbStairs(self, n: int) -> int:
         if n == 1:

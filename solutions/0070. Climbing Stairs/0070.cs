@@ -1,8 +1,7 @@
 // Time complexity: O(n)
 // Space complexity: O(1)
-class Solution {
-public:
-    int climbStairs(int n) {
+public class Solution {
+    public int ClimbStairs(int n) {
         if (n == 1) return 1;
 
         int first = 1;
@@ -14,4 +13,4 @@ public:
         }
         return second;
     }
-};
+}
