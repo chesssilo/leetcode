@@ -3,19 +3,19 @@
 class Solution {
 public:
 	vector<int> sortArrayByParity(vector<int>& nums) {
-		vector<int> res;
-		res.reserve(nums.size());
-        for (int e : nums) {
-            if ((e & 1) == 0) {
-                res.push_back(e);
+		vector<int> ans;
+		ans.reserve(nums.size());
+        for (int num : nums) {
+            if ((num & 1) == 0) {
+                ans.push_back(num);
             }
         }
-        for (int e : nums) {
-            if ((e & 1) != 0) {
-                res.push_back(e);
+        for (int num : nums) {
+            if ((num & 1) != 0) {
+                ans.push_back(num);
             }
         }
-        assert(res.size() == nums.size());
-        return res;
+        assert(ans.size() == nums.size());
+        return ans;
 	}
 };
