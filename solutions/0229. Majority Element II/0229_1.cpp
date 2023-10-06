@@ -12,7 +12,7 @@ public:
         }
         
         for (const auto& pair : count) {
-            if (pair.second >= maxValue) {
+            if (pair.second > maxValue) {
                 ans.push_back(pair.first);
             }
         }
