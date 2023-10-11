@@ -1,3 +1,5 @@
+// Time complexity: O(nlogn)
+// Space complexity: O(h)
 class Solution {
 public:
     bool isBalanced(TreeNode* root) {
