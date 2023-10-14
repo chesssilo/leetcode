@@ -1,29 +1,24 @@
+// Time complexity: O(n)
+// Space complexity: O(n)
 class Solution {
 public:
-	bool isValid(string s) {
-		stack <char> stk;
-		int length = s.length();
-		char top;
-
-		for (int i = 0; i < length; i++) {
-			if (s[i] == '(' || s[i] == '{' || s[i] == '[')
-				stk.push(s[i]);
-
-			else {
-				if (stk.empty())
+	bool isValid(const string &s) {
+		stack <char, vector<char>> st;
+		
+		for (char c : s) {
+			if (c == '(') {
+				st.push(')');
+			} else if (c == '{') {
+				st.push('}');
+			} else if (c == '[') {
+				st.push(']');
+			} else {
+				if (st.empty() || st.top() != c) {
 					return false;
-
-				else {
-					top = stk.top();
-					if (s[i] == ')' && top == '(' || s[i] == '}' && top == '{' || s[i] == ']' && top == '[')
-						stk.pop();
-
-					else return false;
 				}
+				st.pop();
 			}
 		}
-
-		if (stk.empty()) return true;
-		else return false;
+		return st.empty();
 	}
 };
