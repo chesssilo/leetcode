@@ -1,13 +1,12 @@
 // Time complexity: O(n)
 // Space complexity: O(1)
-class Solution {
-public:
-    int findUnsortedSubarray(const vector<int>& nums) {
+public class Solution {
+    public int FindUnsortedSubarray(int[] nums) {
         int maxi = nums[0];
         int last = -1;
 
-        for (int i = 0; i < nums.size(); ++i) {
-            maxi = max(maxi, nums[i]);
+        for (int i = 0; i < nums.Length; ++i) {
+            maxi = Math.Max(maxi, nums[i]);
             if (nums[i] < maxi) {
                 last = i;
             } 
@@ -17,10 +16,10 @@ public:
             return 0;
         }
 
-        int mini = nums.back();
+        int mini = nums[nums.Length - 1];
         int first = -1;
-        for (int i = nums.size() - 1; i >= 0; --i) {
-            mini = min(mini, nums[i]);
+        for (int i = nums.Length - 1; i >= 0; --i) {
+            mini = Math.Min(mini, nums[i]);
             if (nums[i] > mini) {
                 first = i;
             }
@@ -28,4 +27,4 @@ public:
 
         return last - first + 1;
     }
-};
+}
