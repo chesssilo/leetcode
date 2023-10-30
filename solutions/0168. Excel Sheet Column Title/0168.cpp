@@ -1,12 +1,14 @@
+// Time complexity: O(logn)
+// Space complexity: O(logn)
 class Solution {
 public:
     string convertToTitle(int columnNumber) {
-        string result;
+        string ans;
         while (columnNumber--) {
-            result.push_back(columnNumber % 26 + 'A');
+            ans.push_back(columnNumber % 26 + 'A');
             columnNumber /= 26;
         }
-        reverse(result.begin(), result.end());
-        return result;
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
