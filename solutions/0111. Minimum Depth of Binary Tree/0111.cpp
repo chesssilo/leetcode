@@ -1,3 +1,5 @@
+// Time complexity: O(n)
+// Space complexity: O(h)
 class Solution {
 public:
     int minDepth(TreeNode* root) {
@@ -7,6 +9,6 @@ public:
             return minDepth(root->right) + 1;
         if (root->right == nullptr)
             return minDepth(root->left) + 1;
-        return std::min(minDepth(root->left), minDepth(root->right)) + 1;
+        return min(minDepth(root->left), minDepth(root->right)) + 1;
     }
 };
