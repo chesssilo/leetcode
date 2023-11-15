@@ -1,5 +1,5 @@
 // Time complexity: O(n)
-// Space complexity: O(1)
+// Space complexity: O(n)
 class Solution {
 public:
     vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
