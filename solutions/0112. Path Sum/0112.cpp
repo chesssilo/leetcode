@@ -1,8 +1,17 @@
+// Time complexity: O(n)
+// Space complexity: O(h)
 class Solution {
 public:
 	bool hasPathSum(TreeNode* root, int targetSum) {
-		if (!root) return false;
-		if (root->val == targetSum && !root->left && !root->right) return true;
-		return hasPathSum(root->right, targetSum - root->val) || hasPathSum(root->left, targetSum - root->val);
+		if (root == nullptr) {
+			return false;
+		} 
+		if (root->left == nullptr && root->right == nullptr) {
+			return root->val == targetSum;
+		} else {
+			return 
+				hasPathSum(root->left, targetSum - root->val) || 
+				hasPathSum(root->right, targetSum - root->val);
+		}
 	}
 };
