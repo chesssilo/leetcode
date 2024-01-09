@@ -1,11 +1,14 @@
+# Time Complexity: O(T1+T2)
+# Space Complexity: O(T1+T2)
 class Solution:
-    def leafSimilar(self, root1: TreeNode, root2: TreeNode) -> bool:
-        def getLeaves(node):
-            if node is None:
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        def dfs(root: Optional[TreeNode]) -> None:
+            if not root:
                 return
-            if node.left is None and node.right is None:
-                yield node.val
-            yield from getLeaves(node.left)
-            yield from getLeaves(node.right)
+            if not root.left and not root.right:
+                yield root.val 
 
-        return all(a == b for a, b  in zip_longest(getLeaves(root1), getLeaves(root2), fillvalue=None))    
+            yield from dfs(root.left)
+            yield from dfs(root.right)
+
+        return list(dfs(root1)) == list(dfs(root2))  
