@@ -1,0 +1,8 @@
+# Time complexity: O(n)
+# Space complexity: O(1)
+class Solution:
+    def minSteps(self, s: str, t: str) -> int:
+        count = collections.Counter(s)
+        count.subtract(collections.Counter(t))
+
+        return sum(abs(value) for value in count.values()) // 2
