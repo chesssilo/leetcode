@@ -1,7 +1,5 @@
 // Time complexity: O(n)
 // Space complexity: O(1)
-use std::collections::HashMap;
-
 impl Solution {
     pub fn close_strings(word1: String, word2: String) -> bool {
         if word1.len() != word2.len() {
