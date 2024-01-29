@@ -1,40 +1,29 @@
+// Time complexity: Constructor: O(1), push(x): O(1), pop(): O(n), peek(): O(n), empty(): O(1)
+// Space complexity: O(n)
 class MyQueue {
-    stack<int, vector<int>> in;
-    stack<int, vector<int>> out;
-
-    void prepareOut() {
-        if (out.empty()) {
-            while (!in.empty()) {
-                out.push(in.top());
-                in.pop();
-            }
-        }
-    }
 public:
-
     void push(int x) {
-        in.push(x);
+        input.push(x);
     }
-    
+
     int pop() {
-        if (empty()) {
-            throw logic_error("pop from empty queue");
-        }
-        prepareOut();
-        int x = out.top();
-        out.pop();
-        return x;
+        peek();
+        const int val = output.top();
+        output.pop();
+        return val;
     }
-    
+
     int peek() {
-        if (empty()) {
-            throw logic_error("pop from empty queue");
-        }
-        prepareOut();
-        return out.top();
+        if (output.empty())
+            while (!input.empty())
+                output.push(input.top(), input.pop());
+        return output.top();        
     }
-    
+
     bool empty() {
-        return in.empty() && out.empty();
+        return input.empty() && output.empty();
     }
+private:
+    stack<int> input;
+    stack<int> output;    
 };
