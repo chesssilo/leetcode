@@ -2,17 +2,19 @@
 // Space complexity : O(n)
 class Solution {
 public:
-    vector<int> dailyTemperatures(vector<int>& temperatures) {
-        int n = temperatures.size();
-        vector<int> result(n);
-        stack<int> stk;
-        for (int i = 0; i < n; ++i) {
-            while (!stk.empty() && temperatures[stk.top()] < temperatures[i]) {
-                result[stk.top()] = i - stk.top();
-                stk.pop();
+    vector<int> dailyTemperatures(const vector<int>& temperatures) {
+        vector<int> ans(temperatures.size());
+        stack<int> stack;
+
+        for (int i = 0; i < temperatures.size(); ++i) {
+            while (!stack.empty() && temperatures[stack.top()] < temperatures[i]) {
+                const int index = stack.top();
+                stack.pop();
+                ans[index] = i - index;
             }
-            stk.push(i);
+            stack.push(i);
         }
-        return result;
+
+        return ans;
     }
 };
