@@ -1,3 +1,10 @@
 # leetcode
 
-I was told "To become a cool programmer, you need to solve problems on "leetcode""(I'm not sure it really works that way 🤣). But I think it's good practice to train your skills.Therefore, I will solve problems on the "leetcode" and post my solutions here. 🤓
+<div align="center">
+<br/>
+<img src="https://img.shields.io/badge/Solved-398/3031%20=%20100%25-blue.svg?style=flat-square" />
+<br/>
+<img src="https://img.shields.io/badge/Easy-192/766-5CB85D.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Medium-160/1594-F0AE4E.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Hard-46/671-D95450.svg?style=flat-square" />
+</div>
