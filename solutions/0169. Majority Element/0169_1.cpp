@@ -1,17 +1,17 @@
 // Time complexity: O(n)
-// Space complexity: O(n)
+// Space complexity: O(1)
 class Solution {
- public:
+public:
   int majorityElement(const vector<int>& nums) {
-    int n = nums.size();
-    unordered_map<int, int> count;
+    int ans;
+    int count = 0;
 
-    for (int num : nums) {
-        count[num]++;
-        if (count[num] > n / 2) {
-            return num;
-        }
+    for (const int num : nums) {
+      if (count == 0)
+        ans = num;
+      count += num == ans ? 1 : -1;
     }
-    throw invalid_argument("no majority element");
+
+    return ans;
   }
 };
