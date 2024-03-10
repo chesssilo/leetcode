@@ -1,14 +1,14 @@
+// Time complexity: O(d)
+// Space complexity: O(1)
 class Solution {
-public:
-    int countDigits(int num) {
-        int count = 0;
-        int temp = num;
+ public:
+  int countDigits(int num) {
+    int ans = 0;
 
-        while (temp) {
-            int val = temp % 10;
-            if (num % val == 0) count++;
-            temp /= 10;
-        }
-        return count;
-    }
+    for (int n = num; n > 0; n /= 10)
+      if (num % (n % 10) == 0)
+        ++ans;
+
+    return ans;        
+  }
 };
