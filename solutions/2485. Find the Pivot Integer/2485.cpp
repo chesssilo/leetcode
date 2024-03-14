@@ -1,21 +1,11 @@
-// Time complexity: O(n^2)
+// Time complexity: O(1)
 // Space complexity: O(1)
 class Solution {
-public:
-    int pivotInteger(int n) {
-        int sumRight = 0;
+ public:
+  int pivotInteger(int n) {
+    const int sum = (n * (n + 1) / 2);
+    const int pivot = sqrt(sum);
 
-        for (int j = n; j >= 1; j--) {
-            sumRight += j;
-            int sumLeft = 0;
-            for (int i = 1; i <= j; i++) {
-                sumLeft += i;  
-            }
-            if (sumLeft == sumRight) {
-                return j;
-                break;
-            }
-        }
-        return -1;
-    }
+    return pivot * pivot == sum ? pivot : -1;
+  }
 };

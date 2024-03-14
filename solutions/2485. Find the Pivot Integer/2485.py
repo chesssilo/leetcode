@@ -1,8 +1,8 @@
-# Time complexity: O(n)
+# Time complexity: O(1)
 # Space complexity: O(1)
 class Solution:
-    def pivotInteger(self, n: int) -> int:
-        for i in range(0, n + 1):
-            if (1 + i) * i == (i + n) * (n - i + 1):
-                return i
-        return -1
+  def pivotInteger(self, n: int) -> int:
+    sum = n * (n + 1) // 2
+    pivot = int(math.sqrt(sum))
+
+    return pivot if pivot * pivot == sum else -1
