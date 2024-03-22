@@ -1,14 +1,15 @@
 // Time complexity: O(n)
 // Space complexity: O(n)
 class Solution {
-public:
-    ListNode* reverseList(ListNode* head) {
-        if (!head || !head->next)
-            return head;
+ public:
+  ListNode* reverseList(ListNode* head) {
+    if (!head || !head->next)
+      return head;
 
-        ListNode* newHead = reverseList(head->next);
-        head->next->next = head;
-        head->next = nullptr;
-        return newHead;
-    }
+    ListNode* newHead = reverseList(head->next);
+    head->next->next = head;
+    head->next = nullptr;
+    
+    return newHead;
+  }
 };
