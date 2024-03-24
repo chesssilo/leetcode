@@ -1,24 +1,42 @@
+# Time complexity: O(n)
+# Space complexity: O(1)   
 class Solution:
-    def reorderList(self, head: Optional[ListNode]) -> None:
-        slow, fast = head, head.next
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        center_ptr = slow.next
-        slow.next = None
+  def reorderList(self, head: ListNode) -> None:
+    def findMid(head: ListNode) -> ListNode:
+      prev = None
+      slow = head
+      fast = head
 
-        left, right = None, center_ptr
-        while right:
-            tmp = right.next
-            right.next = left
-            left, right = right, tmp
+      while fast and fast.next:
+        prev = slow
+        slow = slow.next
+        fast = fast.next.next
+      prev.next = None
 
-        first, second = head, left
-        while first and second:
-            tmp_first = first.next
-            tmp_second = second.next
-            first.next = second
-            second.next = tmp_first
-            first = tmp_first
-            second = tmp_second      
-        
+      return slow
+
+    def reverse(head: ListNode) -> ListNode:
+      prev = None
+      curr = head
+
+      while curr:
+        next = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next
+
+      return prev
+
+    def merge(l1: ListNode, l2: ListNode) -> None:
+      while l2:
+        next = l1.next
+        l1.next = l2
+        l1 = l2
+        l2 = next
+
+    if not head or not head.next:
+      return
+
+    mid = findMid(head)
+    reversed = reverse(mid)
+    merge(head, reversed)                
