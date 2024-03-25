@@ -1,17 +1,8 @@
 # Time complexity: O(n)
 # Space complexity: O(1)
 class Solution:
-    def findTheDifference(self, s: str, t: str) -> str:
-        frequency = {}
+  def findTheDifference(self, s: str, t: str) -> str:
+    sXors = chr(functools.reduce(lambda x, y: x ^ y, map(ord, s), 0))
+    tXors = chr(functools.reduce(lambda x, y: x ^ y, map(ord, t), 0))
 
-        for c in s:
-            frequency[c] = frequency.get(c, 0) + 1
-    
-        for c in t:
-            frequency[c] = frequency.get(c, 0) - 1
-
-        for char, freq in frequency.items():
-            if freq < 0:
-                return char
-    
-        return ' '
+    return chr(ord(sXors) ^ ord(tXors))  

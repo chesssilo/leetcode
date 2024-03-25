@@ -1,5 +1,10 @@
 # Time complexity: O(n)
 # Space complexity: O(1)
 class Solution:
-    def findTheDifference(self, s: str, t: str) -> str:
-        return chr(sum(ord(char) for char in t) - sum(ord(char) for char in s))
+  def findTheDifference(self, s: str, t: str) -> str:
+    count = collections.Counter(s)
+
+    for c in t:
+      if count[c] == 0:
+        return c
+      count[c] -= 1   
