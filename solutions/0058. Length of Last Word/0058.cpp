@@ -1,18 +1,16 @@
+// Time complexity: O(n)
+// Space complexity: O(1)
 class Solution {
-public:
-    int lengthOfLastWord(string s) {
-        int lastWordLength = 0;
-        string lastWord = s;
+ public:
+  int lengthOfLastWord(string_view s) {
+    int i = s.length() - 1;
+    while (i >= 0 && s[i] == ' ')
+      --i;
 
-        lastWord.erase(0, lastWord.find_first_not_of(" "));
-        lastWord.erase(lastWord.find_last_not_of(" ") + 1);
+    const int lastIndex = i;
+    while (i >= 0 && s[i] != ' ')
+      --i;
 
-        for (int i = 0; i < lastWord.length(); i++) {
-            if (lastWord[i] == ' ')
-                lastWordLength = 0;
-            else
-                lastWordLength++;
-        }
-        return lastWordLength;
-    }
+    return lastIndex - i;
+  }
 };
