@@ -1,12 +1,21 @@
+// Time complexity: O(n)
+// Space complexity: O(n)
 class Solution {
-public:
-    string interpret(string command) {
-        string result = "";
-        for (int i = 0; i < command.length(); i++) {
-            if (command[i] == 'G') result += command[i];
-            if (command[i] == '(' && command[i + 1] == ')') result += 'o';
-            if (command[i] == '(' && command[i + 1] == 'a') result += "al";
-        }
-        return result;
-    }
+ public:
+  string interpret(string_view command) {
+    string ans;
+    for (int i = 0; i < command.size();)
+      if (command[i] == 'G') {
+        ans += "G";
+        ++i;
+      } else if (command[i + 1] == ')') {
+        ans += "o";
+        i += 2;
+      } else {
+        ans += "al";
+        i += 4;
+      }
+    
+    return ans;
+  }
 };

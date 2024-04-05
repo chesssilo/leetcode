@@ -1,16 +1,11 @@
+// Time complexity: O(mn)
+// Space complexity: O(1)
 class Solution {
-public:
-    int maximumWealth(vector<vector<int>>& accounts) {
-        int maxWealth = 0;
-        
-        for (vector<int>& temp : accounts) {
-            int sum = 0;
-            for (int& value : temp) {
-                sum += value;
-            }
-            if (sum > maxWealth)
-                maxWealth = sum;
-        }
-        return maxWealth;
-    }
+ public:
+  int maximumWealth(const Vector<vector<int>>& accounts) {
+    return accumulaye(accounts.begin(), accounts.end(), 0,
+                      [](int maxAccountSum, const vector<int>& account) {
+      return max(maxAccountSum, accumulate(account.begin(), account.end(), 0));
+    });
+  }
 };
