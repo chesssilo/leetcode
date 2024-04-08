@@ -1,23 +1,22 @@
 // Time complexity: O(n)
 // Space complexity: O(1)
 class Solution {
-public:
-    bool checkPossibility(vector<int>& nums) {
-        bool modified = false;
+ public:
+  bool checkPossibility(const vector<int>& nums) {
+    int count = 0;
+    int prev = INT_MIN;
 
-        for (int i = 1; i < nums.size(); ++i) {
-            if (nums[i] < nums[i - 1]) {
-                if (modified) {
-                    return false;
-                }
-                if (i == 1 || nums[i] >= nums[i - 2]) {
-                    nums[i - 1] = nums[i];
-                } else {
-                    nums[i] = nums[i - 1];
-                }
-                modified = true;
-            }
-        }
-        return true;
-    }
+    for (int i = 0; i < nums.size(); ++i) {
+      if (nums[i] < prev) {
+        ++count;
+        if (count > 1)
+          return false;
+        if (i > 1 && nums[i - 2] > nums[i])
+          continue;
+      }
+      prev = nums[i];
+    }  
+    
+    return true;
+  }
 };
