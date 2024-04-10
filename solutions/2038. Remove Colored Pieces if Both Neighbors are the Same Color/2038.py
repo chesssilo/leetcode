@@ -1,15 +1,14 @@
 # Time complexity: O(n)
 # Space complexity: O(1)
 class Solution:
-    def winnerOfGame(self, colors: str) -> bool:
-        alice = 0
-        bob = 0
+  def winnerOfGame(self, colors: str) -> bool:
+    countAlice = 0
+    countBob = 0
 
-        for i in range(1, len(colors) - 1):
-           if  colors[i - 1] == colors[i] == colors[i + 1]:
-                if colors[i] == 'A':
-                    alice += 1
-                if colors[i] == 'B':
-                    bob += 1   
+    for a, b, c in zip(colors, colors[1:], colors[2:]):
+      if 'A' == a == b == c:
+        countAlice += 1
+      elif 'B' == a == b == c:
+        countBob += 1   
 
-        return alice - bob >= 1
+    return countAlice > countBob 
