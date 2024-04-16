@@ -1,8 +1,8 @@
 // Time complexity: O(n)
 // Space complexity: O(1)
 class Solution {
-public:
-  bool isPalindrome(string s) {
+ public:
+  bool isPalindrome(string_view s) {
     int l = 0;
     int r = s.length() - 1;
 
@@ -16,6 +16,7 @@ public:
       ++l;
       --r;
     }
+
     return true;
   }
 };
