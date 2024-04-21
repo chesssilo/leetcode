@@ -1,21 +1,13 @@
-// Time complexity: O(n^2)
-// Space complexity: O(n)
+// Time complexity: O(n)
+// Space complexity: O(1)
 class Solution {
-public:
-    string findDifferentBinaryString(vector<string>& nums) {
-        unordered_set<int> integers;
-        for (string num : nums) {
-            integers.insert(stoi(num, 0, 2));
-        }
+ public:
+  string findDifferentBinaryString(const vector<string>& nums) {
+    string ans;
+
+    for (int i = 0; i < nums.size(); ++i)
+      ans += nums[i][i] == '0' ? '1' : '0';
         
-        int n = nums.size();
-        for (int num = 0; num <= n; ++num) {
-            if (integers.find(num) == integers.end()) {
-                string ans = bitset<16>(num).to_string();
-                return ans.substr(16 - n);
-            }
-        }
-        
-        return "";
-    }
+    return ans;
+  }
 };

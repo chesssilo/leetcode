@@ -1,33 +1,19 @@
-// Time complexity: O(2^n)
+// Time complexity: O(n)
 // Space complexity: O(n)
 class Solution {
-public:
-    string findDifferentBinaryString(vector<string>& nums) {
-        n = nums.size();
-        for (string s : nums) {
-            numsSet.insert(s);
-        }
-        
-        return generate("");
-    }
-private:
-    int n;
-    unordered_set<string> numsSet;
-    
-    string generate(string curr) {
-        if (curr.size() == n) {
-            if (numsSet.find(curr) == numsSet.end()) {
-                return curr;
-            }
-            
-            return "";
-        }
-        
-        string addZero = generate(curr + "0");
-        if (addZero.size() > 0) {
-            return addZero;
-        }
-        
-        return generate(curr + "1");
-    }
+ public:
+  string findDifferentBinaryString(const vector<string>& nums) {
+    const int bitSize = nums[0].length();
+    const int maxNum = 1 << bitSize;
+    unordered_set<int> numsSet;
+
+    for (const string& num : nums)
+      numsSet.insert(stoi(num, nullptr, 2));
+
+    for (int num = 0; num < maxNum; ++num)
+      if (!numsSet.count(num))
+        return std::bitset<16>(num).to_string().substr(16 - bitSize);
+
+    throw;
+  }
 };
