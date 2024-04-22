@@ -1,3 +1,5 @@
+// Time complexity: O(row⋅col⋅log(row⋅col))
+// Space complexity: O(row⋅col)O(row⋅col)
 class Solution {
  public:
   int latestDayToCross(int row, int col, vector<vector<int>>& cells) {
@@ -6,7 +8,7 @@ class Solution {
     int r = cells.size() - 1;
 
     while (l <= r) {
-      const int m = (l + r) / 2;
+      const int m = l + (r - l) / 2;
       if (canWalk(m, row, col, cells)) {
         ans = m;
         l = m + 1;
