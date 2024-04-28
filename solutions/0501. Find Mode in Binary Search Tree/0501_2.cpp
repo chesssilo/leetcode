@@ -1,38 +1,45 @@
 // Time complexity: O(n)
 // Space complexity: O(n)
 class Solution {
-public:
-    vector<int> findMode(TreeNode* root) {
-        unordered_map<int, int> counter;
-        vector<TreeNode*> stack;
-        stack.push_back(root);
+ public:   
+  vector<int> findMode(TreeNode* root) {
+    vector<int> ans;
+    int maxStreak = 0;
+    int currStreak = 0;
+    int currNum = 0;
         
-        while (!stack.empty()) {
-            TreeNode* node = stack.back();
-            stack.pop_back();
+    TreeNode* curr = root;
+    while (curr != nullptr) {
+      if (curr->left != nullptr) {
+        TreeNode* friendNode = curr->left;
+        while (friendNode->right != nullptr)
+          friendNode = friendNode->right;
+                
+        friendNode->right = curr;
+        TreeNode* left = curr->left;
+        curr->left = nullptr;
+        curr = left;
+      } else {
+        int num = curr->val;
+        if (num == currNum) {
+          currStreak++;
+        } else {
+          currStreak = 1;
+          currNum = num;
+        }
 
-            counter[node->val]++;
-            if (node->left != nullptr) {
-                stack.push_back(node->left);
-            }
-            if (node->right != nullptr) {
-                stack.push_back(node->right);
-            }
+        if (currStreak > maxStreak) {
+          ans = {};
+          maxStreak = currStreak;
         }
-        
-        int maxFreq = 0;
 
-        for (auto& [key, val] : counter) {
-            maxFreq = max(maxFreq, val);
-        }
-        
-        vector<int> ans;
-        for (auto& [key, val] : counter) {
-            if (val == maxFreq) {
-                ans.push_back(key);
-            } 
-        }
-        
-        return ans;
+        if (currStreak == maxStreak)
+          ans.push_back(num);
+                
+        curr = curr->right;
+      }
     }
+        
+    return ans;
+  }
 };
