@@ -1,33 +1,28 @@
 // Time complexity: O(n^2)
 // Space complexity: O(n)
-const int MOD = 1e9 + 7;
-
 class Solution {
-public:
-    int numFactoredBinaryTrees(std::vector<int>& arr) {
-        sort(arr.begin(), arr.end());
-        unordered_set<int> s(arr.begin(), arr.end());
-        unordered_map<int, int> dp;
-        for (int x : arr) dp[x] = 1;
-        
-        for (int i : arr) {
-            for (int j : arr) {
-                if (j > sqrt(i)) break;
-                if (i % j == 0 && s.find(i / j) != s.end()) {
-                    long long temp = (long long)dp[j] * dp[i / j];
-                    if (i / j == j) {
-                        dp[i] = (dp[i] + temp) % MOD;
-                    } else {
-                        dp[i] = (dp[i] + temp * 2) % MOD;
-                    }
-                }
-            }
+ public:
+  int numFactoredBinaryTrees(vector<int>& arr) {
+    constexpr int kMod = 1'000'000'007;
+    const int n = arr.size();
+    vector<long> dp(n, 1);
+    unordered_map<int, int> numToIndex;
+
+    ranges::sort(arr);
+
+    for (int i = 0; i < n; ++i)
+      numToIndex[arr[i]] = i;
+
+    for (int i = 0; i < n; ++i)
+      for (int j = 0; j < i; ++j)
+        if (arr[i] % arr[j] == 0) {
+          const int right = arr[i] / arr[j];
+          if (const auto it = numToIndex.find(right); it != numToIndex.cend()) {
+            dp[i] += dp[j] * dp[it->second];
+            dp[i] %= kMod;
+          }
         }
-        
-        int result = 0;
-        for (auto& [_, val] : dp) {
-            result = (result + val) % MOD;
-        }
-        return result;
-    }
+
+    return accumulate(dp.begin(), dp.end(), 0L) % kMod;
+  }
 };
