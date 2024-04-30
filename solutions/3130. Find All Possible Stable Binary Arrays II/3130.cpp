@@ -1,5 +1,3 @@
-// Time complexity: O(one*zero)
-// Space complexity: O(one*zero)
 class Solution {
  public:
   int numberOfStableArrays(int zero, int one, int limit) {
