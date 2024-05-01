@@ -1,20 +1,16 @@
 // Time complexity: O(sort)
 // Space complexity: O(sort)
 class Solution {
-public:
-    int reductionOperations(vector<int>& nums) {
-        ranges::sort(nums);
-        int ans = 0;
-        int up = 0;
-        
-        for (int i = 1; i < nums.size(); ++i) {
-            if (nums[i] != nums[i - 1]) {
-                ++up;
-            }
-            
-            ans += up;
-        }
-        
-        return ans;
-    }
+ public:
+  int reductionOperations(vector<int>& nums) {
+    int ans = 0;
+
+    ranges::sort(nums);
+
+    for (int i = nums.size() - 1; i > 0; --i)
+      if (nums[i] != nums[i - 1])
+        ans += nums.size() - i;
+
+    return ans;
+  }
 };
