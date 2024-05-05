@@ -1,32 +1,26 @@
 // Time complexity: O(n)
 // Space complexity: O(1)
 class Solution {
-public:
-    string decodeAtIndex(string s, int k) {
+ public:
+  string decodeAtIndex(string_view s, int k) {
+    long length = 0;
 
-        long long length = 0;
-        int i = 0;
-        
-        while (length < k) {
-            if (isdigit(s[i])) {
-                length *= s[i] - '0';
-            } else {
-                length++;
-            }
-            i++;
-        }
-        
-        for (int j = i - 1; j >= 0; j--) {
-            if (isdigit(s[j])) {
-                length /= s[j] - '0';
-                k %= length;
-            } else {
-                if (k == 0 || k == length) {
-                    return string(1, s[j]);
-                }
-                length--;
-            }
-        }       
-        return "";
+    for (const char c : s)
+      if (isdigit(c))
+        length *= c - '0';
+      else
+        ++length;
+
+    for (int i = s.length() - 1; i >= 0; --i) {
+      k %= length;
+      if (k == 0 && isalpha(s[i]))
+        return string(1, s[i]);
+      if (isdigit(s[i]))
+        length /= s[i] - '0';
+      else
+        --length;
     }
+
+    throw;
+  }
 };
