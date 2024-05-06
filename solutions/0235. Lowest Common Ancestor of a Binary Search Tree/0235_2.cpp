@@ -1,12 +1,16 @@
 // Time complexity: O(h)
-// Space complexity: O(h)
+// Space complexity: O(1)
 class Solution {
-public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if (p->val < root->val && q->val < root->val)
-            return lowestCommonAncestor(root->left, p, q);
-        if (p->val > root->val && q->val > root->val)
-            return lowestCommonAncestor(root->right, p, q);
+ public:
+  TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {  
+    while(root != nullptr) {
+      if (p->val < root->val && q->val < root->val)
+        root = root->left;
+      else if (p->val > root->val && q->val > root->val)
+        root = root->right;
+      else
         return root;
     }
+    return root;
+  }
 };
