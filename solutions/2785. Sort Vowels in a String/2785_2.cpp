@@ -1,37 +1,32 @@
 // Time complexity: O(n)
-// Space complexity: O(1)
+// Space complexity: O(n)
 class Solution {
-public:
-    string sortVowels(const string &s) {
-        unordered_map<char, int> count;
+ public:
+  string sortVowels(const string &s) {
+    vector<int> count(128, 0);
+    for (const char c : s)
+      if (isVowel(c))
+        ++count[c];
 
-        for (char c : s) {
-            if (isVowel(c)) {
-                count[c]++;
-            }
-        }
+    string ans;
+    int j = 0;
+    for (int i = 0; i < s.size(); ++i)
+      if (!isVowel(s[i])) {
+        ans += s[i];
+      } else {
+        while (count[kVowels[j]] == 0)
+          ++j;
 
-        string sortedVowel = "AEIOUaeiou";
-        string ans;
-        int j = 0;
-        for (int i = 0; i < s.size(); ++i) {
-            if (!isVowel(s[i])) {
-                ans += s[i];
-            } else {
-                while (count[sortedVowel[j]] == 0) {
-                    j++;
-                }
+        ans += kVowels[j];
+        count[kVowels[j]]--;
+      }
 
-                ans += sortedVowel[j];
-                count[sortedVowel[j]]--;
-            }
-        }
-        return ans;
-    }
-private:
-     bool isVowel(char c) {
-        return c == 'a' || c == 'e' || c == 'o'|| c == 'u'|| c == 'i' 
-            || c == 'A' || c == 'E' || c == 'O'|| c == 'U'|| c == 'I';
-    }
+    return ans;
+  }
+ private:
+  static constexpr string_view kVowels = "AEIOUaeiou";
 
+  bool isVowel(const char& c) {
+    return kVowels.find(c) != string_view::npos;
+  }
 };
