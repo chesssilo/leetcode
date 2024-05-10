@@ -1,20 +1,18 @@
-// Time complexity: O(nlogn)
-// Space complexity: O(1)
+// Time complexity: O(sort)
+// Space complexity: O(sort)
 class Solution {
-public:
+ public:
   long long maximumHappinessSum(vector<int>& happiness, int k) {
-    sort(happiness.begin(), happiness.end(), greater<int>());
-    long long count = 0;
-    long long sum = 0;
-        
-    for (int i = 0; i < k; ++i) {
-      if (happiness[i] - count < 0)
-        return sum;
+    long long ans = 0;
+    int decremented = 0;
 
-      sum += happiness[i] - count;
-      ++count;
+    ranges::sort(happiness, greater<>());
+
+    for (int i = 0; i < k; ++i) {
+      ans += max(0, happiness[i] - decremented);
+      ++decremented;
     }
-        
-    return sum;
+
+    return ans;
   }
 };

@@ -1,13 +1,20 @@
-// Time complexity: O(nlogn)
-// Space complexity: O(n)
-use std::cmp::max;
+// Time complexity: O(sort)
+// Space complexity: O(sort)
+use std::cmp;
 
 impl Solution {
   pub fn maximum_happiness_sum(mut happiness: Vec<i32>, k: i32) -> i64 {
-    happiness.sort();
-    happiness.reverse();
-    *&happiness[0..k as usize].iter()
-    .enumerate()
-    .map(|(i, x)| max(0, *x as i64 - i as i64)).sum()
+    let k = k as usize;
+    let mut ans: i64 = 0;
+    let mut decremented = 0;
+
+    happiness.sort_unstable_by(|a, b| b.cmp(a));
+
+    for i in 0..k {
+      ans += cmp::max(0, happiness[i] - decremented) as i64;
+      decremented += 1;
+    }
+
+    ans
   }
 }
