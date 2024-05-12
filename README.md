@@ -1,4 +1,5 @@
 # leetcode
+My leetcode solutions in C++/Python/Rust/MySQL/TypeScript.
 
 <div align="center">
 <br/>
