@@ -2,7 +2,7 @@
 // Space complexity: O(n⋅2^n)
 class Solution {
  public:
-  vector<vector<int>> subsets(vector<int>& nums) {
+  vector<vector<int>> subsets(const vector<int>& nums) {
     vector<vector<int>> ans;
     dfs(nums, 0, {}, ans);
     return ans;
@@ -17,5 +17,5 @@ class Solution {
       dfs(nums, i + 1, move(path), ans);
       path.pop_back();
     }
-  }    
+  }
 };

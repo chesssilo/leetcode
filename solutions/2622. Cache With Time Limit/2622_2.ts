@@ -1,8 +1,8 @@
-// Time Complexity: O(n)
+// Time Complexity: O(1)
 // Space Complexity: O(n)
 interface TTLValue {
   value: number;
-  timer : ReturnType<typeof setTimeout>;    
+  timer: ReturnType<typeof setTimeout>;
 }
 
 class TimeLimitedCache {
@@ -17,13 +17,14 @@ class TimeLimitedCache {
       value,
       timer: setTimeout(() => this.cache.delete(key), duration),
     });
-    return exists; 
+
+    return exists;
   }
-  
+
   get(key: number): number {
     return this.cache.has(key) ? this.cache.get(key).value : -1;
   }
-  
+
   count(): number {
     return this.cache.size;
   }
