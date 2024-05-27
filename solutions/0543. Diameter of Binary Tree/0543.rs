@@ -1,23 +1,25 @@
+// Time complexity: O(n)
+// Space complexity: O(h)
 use std::rc::Rc;
 use std::cell::RefCell;
-use std::cmp;
 
 impl Solution {
-    pub fn diameter_of_binary_tree(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-        let mut ans = 0;
-        Self::max_depth(&root, &mut ans);
-        ans
+  pub fn diameter_of_binary_tree(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+    fn max_depth(node: &Option<Rc<RefCell<TreeNode>>>, ans: &mut i32) -> i32 {
+      if let Some(n) = node {
+        let n_borrowed = n.borrow();
+        let l = max_depth(&n_borrowed.left, ans);
+        let r = max_depth(&n_borrowed.right, ans);
+        *ans = (*ans).max(l + r);
+        1 + l.max(r)
+      } else {
+        0
+      }
     }
 
-    fn max_depth(root: &Option<Rc<RefCell<TreeNode>>>, ans: &mut i32) -> i32 {
-        match root {
-            None => 0,
-            Some(node) => {
-                let l = Solution::max_depth(&node.borrow().left, ans);
-                let r = Solution::max_depth(&node.borrow().right, ans);
-                *ans = cmp::max(*ans, l + r);
-                1 + cmp::max(l, r)
-            }
-        }
-    }    
+    let mut ans = 0;
+    max_depth(&root, &mut ans);
+    
+    ans
+  }
 }
