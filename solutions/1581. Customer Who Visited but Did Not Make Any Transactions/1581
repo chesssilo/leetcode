@@ -1,4 +1,8 @@
-SELECT customer_id, count(v.visit_id) AS 'count_no_trans' 
-FROM Visits v 
-WHERE v.visit_id NOT IN (SELECT t.visit_id FROM Transactions t)
-GROUP BY customer_id;
+SELECT
+  Visits.customer_id,
+  COUNT(Visits.visit_id) AS count_no_trans
+FROM Visits
+LEFT JOIN Transactions
+  USING (visit_id)
+WHERE Transactions.transaction_id IS NULL
+GROUP BY 1
