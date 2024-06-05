@@ -1,21 +1,13 @@
 # Time complexity: O(n)
 # Space complexity: O(1)
 class Solution:
-    def longestPalindrome(self, s: str) -> int:
-        freq = {}
-        for char in s:
-            freq[char] = freq.get(char, 0) + 1
+  def longestPalindrome(self, s: str) -> int:
+    ans = 0
+    count = collections.Counter(s)
 
-        length = 0
-        odd_count = False
-        for count in freq.values():
-            if count % 2 == 0:
-                length += count
-            else:
-                length += count - 1
-                odd_count = True
-        
-        if odd_count:
-            length += 1
-        
-        return length
+    for c in count.values():
+      ans += c if c % 2 == 0 else c - 1
+
+    hasOddCount = any(c % 2 == 1 for c in count.values())
+
+    return ans + hasOddCount
