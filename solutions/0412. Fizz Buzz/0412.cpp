@@ -1,18 +1,19 @@
 // Time complexity: O(n)
-// Space complexity: O(1)
+// Space complexity: O(n)
 class Solution {
-public:
-    vector<string> fizzBuzz(int n) {
-        vector<string> result;
-        int i = 1;
-        while (i <= n) {
-            string word;
-            if (i % 3 == 0) word += "Fizz";
-            if (i % 5 == 0) word += "Buzz";
+ public:
+  vector<string> fizzBuzz(int n) {
+    vector<string> ans;
 
-            result.push_back(word.empty() ? to_string(i) : word);
-            i++;
-        }
-        return result;
+    for (int i = 1; i <= n; ++i) {
+      string s;
+      if (i % 3 == 0)
+        s += "Fizz";
+      if (i % 5 == 0)
+        s += "Buzz";
+      ans.push_back(s.empty() ? to_string(i) : s);
     }
+
+    return ans;
+  }
 };
