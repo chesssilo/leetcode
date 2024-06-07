@@ -1,11 +1,14 @@
-SELECT 'Low Salary' as category, COUNT(account_id) as accounts_count
+SELECT
+  'Low Salary' AS Category,
+  SUM(income < 20000) AS accounts_count
 FROM Accounts
-WHERE income<20000
-UNION
-SELECT 'Average Salary' as category, COUNT(*)
+UNION ALL
+SELECT
+  'Average Salary' Category,
+  SUM(income >= 20000 AND income <= 50000) AS accounts_count
 FROM Accounts
-WHERE income>=20000 AND income<=50000
-UNION
-SELECT 'High Salary' as category, COUNT(*)
-FROM Accounts
-WHERE income>50000
+UNION ALL
+SELECT
+  'High Salary' category,
+  SUM(income > 50000) AS accounts_count
+FROM Accounts;

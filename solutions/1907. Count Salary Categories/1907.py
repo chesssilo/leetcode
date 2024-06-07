@@ -1,9 +1,20 @@
 import pandas as pd
 
 def count_salary_categories(accounts: pd.DataFrame) -> pd.DataFrame:
-    low_salary_count = accounts[accounts['income'] < 20000].shape[0]
-    average_salary_count = accounts[(accounts['income'] >= 20000) & (accounts['income'] <= 50000)].shape[0]
-    high_salary_count = accounts[accounts['income'] > 50000].shape[0] 
-
-    df = pd.DataFrame({'category': ['High Salary', 'Low Salary', 'Average Salary'],'accounts_count': [high_salary_count, low_salary_count, average_salary_count]})
-    return df                                   
+  conditions = {
+    'Low Salary': accounts['income'] < 20000,
+    'Average Salary': (accounts['income'] >= 20000) & 
+                      (accounts['income'] <= 50000),
+    'High Salary': accounts['income'] > 50000
+  }
+    
+  data = {
+    'category': [],
+    'accounts_count': []
+  }
+    
+  for category, condition in conditions.items():
+    data['category'].append(category)
+    data['accounts_count'].append(accounts[condition].shape[0])
+    
+  return pd.DataFrame(data)
