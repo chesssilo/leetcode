@@ -1,11 +1,13 @@
+// Time complexity: O(n)
+// Space complexity: O(1)
 class Solution {
-public:
-    int finalValueAfterOperations(vector<string>& operations) {
-		int x = 0;
-		for (int i = 0; i < operations.size(); i++) {
-			if (operations[i] == "++X" || operations[i] == "X++") x++;
-			else x--;
-		}
-		return x;
-    }
+ public:
+  int finalValueAfterOperations(const vector<string>& operations) {
+		int ans = 0;
+
+		for (const string& op : operations)
+			ans += op[1] == '+' ? 1 : -1;
+
+		return ans;
+  }
 };

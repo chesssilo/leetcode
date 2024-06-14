@@ -1,0 +1,5 @@
+# Time complexity: O(n)
+# Space complexity: O(1)
+class Solution:
+  def finalValueAfterOperations(self, operations: List[str]) -> int:
+    return sum(op[1] == '+' or -1 for op in operations)
