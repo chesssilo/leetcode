@@ -1,17 +1,17 @@
 // Time complexity: O(n)
 // Space complexity: O(n)
 class Solution {
-public:
-    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
-        int maxCandies = 0;
-        for (int candy : candies) {
-            maxCandies = max(maxCandies, candy);
-        }
+ public:
+  vector<bool> kidsWithCandies(const vector<int>& candies, int extraCandies) {
+    vector<bool> ans;
+    int maxCandies = 0;
 
-        vector<bool> result;
-        for (int candy : candies) {
-            result.push_back(candy + extraCandies >= maxCandies);
-        }
-        return result;
-    }
+    for (const int candy : candies)
+      maxCandies = max(maxCandies, candy);
+
+    for (const int candy : candies)
+      ans.push_back(candy + extraCandies >= maxCandies);
+
+    return ans;
+  }
 };
