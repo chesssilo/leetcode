@@ -1,8 +1,8 @@
 // Time complexity: O(n^2)
-// Space complexity: O(n^2)
+// Space complexity: O(n)
 class Solution {
  public:
-  int longestArithSeqLength(vector<int>& nums) {
+  int longestArithSeqLength(const vector<int>& nums) {
     const int n = nums.size();
     int ans = 0;
     vector<vector<int>> dp(n, vector<int>(1001));
