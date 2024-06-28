@@ -1,22 +1,18 @@
-// Time complexity: O(n + m)
-// Space complexity: O(n + m)
+// Time complexity: O(max(m,n))
+// Space complexity: O(m+n)
 impl Solution {
-    pub fn merge_alternately(word1: String, word2: String) -> String {
-        let mut ans = String::new();
-        let n = word1.len();
-        let m = word2.len();
-        let mut i = 0;
-        let mut j = 0;
-        while i < n || j < m {
-            if i < n {
-                ans.push(word1.chars().nth(i).unwrap());
-                i += 1;
-            }
-            if j < m {
-                ans.push(word2.chars().nth(j).unwrap());
-                j += 1;
-            }
-        }
-        ans
+  pub fn merge_alternately(word1: String, word2: String) -> String {
+    let n = word1.len().min(word2.len());
+    let mut ans = String::with_capacity(word1.len() + word2.len());
+
+    for i in 0..n {
+      ans.push(word1.chars().nth(i).unwrap());
+      ans.push(word2.chars().nth(i).unwrap());
     }
+
+    ans.push_str(&word1[n..]);
+    ans.push_str(&word2[n..]);
+
+    ans
+  }
 }

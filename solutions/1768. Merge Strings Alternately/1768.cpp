@@ -1,21 +1,16 @@
-// Time complexity: O(n + m)
-// Space complexity: O(n + m)
+// Time complexity: O(max(m,n))
+// Space complexity: O(m+n)
 class Solution {
-public:
-    string mergeAlternately(string_view word1, string_view word2) {
-        string ans ="";
-        int n = word1.length();
-        int m = word2.length();
-        int i = 0;
-        int j = 0;
-        while (i < n || j < m) {
-            if ( i < n) {
-                ans.push_back(word1[i++]);
-            }
-            if ( j < m) {
-                ans.push_back(word2[j++]);
-            }
-        }
-        return ans;
+ public:
+  string mergeAlternately(string word1, string word2) {
+    const int n = min(word1.length(), word2.length());
+    string pref;
+
+    for (int i = 0; i < n; ++i) {
+      pref += word1[i];
+      pref += word2[i];
     }
+
+    return pref + word1.substr(n) + word2.substr(n);
+  }
 };
