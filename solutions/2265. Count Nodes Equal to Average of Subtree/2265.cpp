@@ -1,29 +1,26 @@
 // Time complexity: O(n)
-// Space complexity: O(n)
+// Space complexity: O(h)
 class Solution {
-public:
-    int averageOfSubtree(TreeNode* root) {
-        postOrder(root);
-        return count;
-    }
-private: 
-    int count = 0;
-    
-    pair<int, int> postOrder(TreeNode* root) {
-        if (root == NULL) {
-            return {0, 0};
-        }
-        
-        pair<int, int> left = postOrder(root->left);
-        pair<int, int> right = postOrder(root->right);
-        
-        int nodeSum = left.first + right.first + root->val;
-        int nodeCount = left.second + right.second + 1;
+ public:
+  int averageOfSubtree(TreeNode* root) {
+    int ans = 0;
+    dfs(root, ans);
 
-        if (root->val == nodeSum / (nodeCount)) {
-            count++;
-        }
+    return ans;
+  }
+ private: 
+  pair<int, int> dfs(TreeNode* root, int& ans) {
+    if (root == nullptr)
+      return {0, 0};
         
-        return {nodeSum, nodeCount};
-    }
+    const auto [leftSum, leftCount] = dfs(root->left, ans);
+    const auto [rightSum, rightCount] = dfs(root->right, ans);
+    const int sum = root->val + leftSum + rightSum;
+    const int count = 1 + leftCount + rightCount;
+
+    if (sum / count == root->val)
+      ++ans;
+        
+    return {sum, count};
+  }
 };
