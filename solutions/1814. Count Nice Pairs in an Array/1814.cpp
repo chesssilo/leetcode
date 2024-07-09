@@ -1,32 +1,31 @@
 // Time complexity: O(n)
 // Space complexity: O(n)
 class Solution {
-public:
-    int countNicePairs(const vector<int>& nums) {
-        vector<int> arr;
-        unordered_map<int, int> dic;
-        int ans = 0;
-        constexpr int MOD = 1'000'000'007;
+ public:
+  int countNicePairs(const vector<int>& nums) {
+    constexpr int kMod = 1'000'000'007;
+    long ans = 0;
+    unordered_map<int, int> count;
 
-        for (int i = 0; i < nums.size(); ++i) {
-            arr.push_back(nums[i] - rev(nums[i]));
-        }
-        
-        for (int num : arr) {
-            ans = (ans + dic[num]) % MOD;
-            dic[num]++;
-        }
-        
-        return ans;
+    for (const int num : nums)
+      ++count[num - rev(num)];
+
+    for (const auto& [_, freq] : count) {
+      ans += freq * (freq - 1) / 2;
+      ans %= kMod;
     }
-private:   
-    int rev(int num) {
-        int result = 0;
-        while (num > 0) {
-            result = result * 10 + num % 10;
-            num /= 10;
-        }
-        
-        return result;
+
+    return ans;
+  }
+ private:
+  int rev(int n) {
+    int x = 0;
+
+    while (n) {
+      x = x * 10 + n % 10;
+      n /= 10;
     }
+
+    return x;
+  }
 };
