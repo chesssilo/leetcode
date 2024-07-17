@@ -1,32 +1,32 @@
-// Time complexity: O(m + n)
+// Time complexity: O(m+n)
 // Space complexity: O(1)
 class Solution {
-public:
-    string minWindow(string s, string_view t) {
-        if (s.empty() || t.empty() || s.length() < t.length())
-            return "";
+ public:
+  string minWindow(string s, string_view t) {
+    if (s.empty() || t.empty() || s.length() < t.length())
+      return "";
 
-        vector<int> count(128);
-        int required = t.length();
-        int bestLeft = -1;
-        int minLength = s.length() + 1;
+    vector<int> count(128);
+    int required = t.length();
+    int bestLeft = -1;
+    int minLength = s.length() + 1;
 
-        for(const char c : t)
-            ++count[c];
+    for(const char c : t)
+      ++count[c];
 
-        for (int l = 0, r = 0; r < s.length(); ++r) {
-            if (--count[s[r]] >= 0)
-                --required;
-            while (required == 0) {
-                if (r - l + 1 < minLength) {
-                    bestLeft = l;
-                    minLength = r - l + 1;
-                }
-                if (++count[s[l++]] > 0)
-                    ++required;
-            }    
+    for (int l = 0, r = 0; r < s.length(); ++r) {
+      if (--count[s[r]] >= 0)
+        --required;
+      while (required == 0) {
+        if (r - l + 1 < minLength) {
+          bestLeft = l;
+          minLength = r - l + 1;
         }
-
-        return bestLeft == -1 ? "" : s.substr(bestLeft, minLength);
+        if (++count[s[l++]] > 0)
+          ++required;
+      }    
     }
+
+    return bestLeft == -1 ? "" : s.substr(bestLeft, minLength);
+  }
 };
