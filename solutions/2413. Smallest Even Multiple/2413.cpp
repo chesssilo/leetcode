@@ -1,7 +1,8 @@
+// Time complexity: O(1)
+// Space complexity: O(1)
 class Solution {
-public:
-    int smallestEvenMultiple(int n) {
-        if (!(n % 2)) return n;
-        return n * 2;
-    }
+ public:
+  int smallestEvenMultiple(int n) {
+    return n * (n % 2 + 1);
+  }
 };
