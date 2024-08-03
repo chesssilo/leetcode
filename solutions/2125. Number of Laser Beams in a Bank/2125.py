@@ -1,14 +1,14 @@
 # Time complexity: O(mn)
 # Space complexity: O(1)
 class Solution:
-    def numberOfBeams(self, bank: List[str]) -> int:
-        ans = 0
-        prev = 0
+  def numberOfBeams(self, bank: List[str]) -> int:
+    ans = 0
+    prevOnes = 0
 
-        for string in bank:
-            count = string.count('1')
-            if count != 0:
-                ans += (count * prev)
-                prev = count
+    for row in bank:
+      ones = row.count('1')
+      if ones:
+        ans += prevOnes * ones
+        prevOnes = ones
 
-        return ans 
+    return ans
