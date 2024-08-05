@@ -1,13 +1,14 @@
 // Time complexity: O(n)
 // Space complexity: O(1)
 class Solution {
-const int MOD = 1e9 + 7;
-public:
-    int countOrders(int n) {
-        long long count = 1;
-        for (int i = 2; i <= n; ++i) {
-            count = (count * (2 * i - 1) * i) % MOD;
-        }
-        return (int)count;
-    }
+ public:
+  int countOrders(int n) {
+    constexpr int kMod = 1'000'000'007;
+    long ans = 1;
+
+    for (int i = 1; i <= n; ++i)
+      ans = ans * i * (i * 2 - 1) % kMod;
+
+    return ans;
+  }
 };
