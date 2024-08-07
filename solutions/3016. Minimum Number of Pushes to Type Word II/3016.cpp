@@ -1,19 +1,19 @@
 // Time complexity: O(n)
 // Space complexity: O(1)
 class Solution {
-public:
-    int minimumPushes(string_view word) {
-        int ans = 0;
-        vector<int> count(26);
+ public:
+  int minimumPushes(string_view word) {
+    int ans = 0;
+    vector<int> count(26);
 
-        for (const char c : word)
-            ++count[c - 'a'];
+    for (const char c : word)
+      ++count[c - 'a'];
 
-        ranges::sort(count, greater<>());
+    ranges::sort(count, greater<>());
 
-        for (int i = 0; i < 26; ++i)
-            ans += count[i] * (i / 8 + 1);
+    for (int i = 0; i < 26; ++i)
+      ans += count[i] * (i / 8 + 1);
 
-        return ans;
-    }
+    return ans;
+  }
 };
