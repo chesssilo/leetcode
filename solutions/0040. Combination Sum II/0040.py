@@ -1,7 +1,7 @@
-# Time complexity: O(n^t)
-# Space complexity: O(t)
+# Time complexity: O(2^n)
+# Space complexity: O(2^n)
 class Solution:
-  def combinationSum(
+  def combinationSum2(
     self,
     candidates: List[int],
     target: int
@@ -16,8 +16,10 @@ class Solution:
         return
 
       for i in range(s, len(candidates)):
+        if i > s and candidates[i] == candidates[i - 1]:
+          continue
         path.append(candidates[i])
-        dfs(i, target - candidates[i], path)
+        dfs(i + 1, target - candidates[i], path)
         path.pop()
 
     candidates.sort()
