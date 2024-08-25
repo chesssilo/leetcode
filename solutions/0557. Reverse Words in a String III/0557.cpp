@@ -1,17 +1,19 @@
 // Time complexity: O(n)
 // Space complexity: O(1)
 class Solution {
-public:
-    string reverseWords(string &s) {
-        string::iterator wordStart = s.begin();
-        for (string::iterator wordEnd = s.begin(); wordEnd != s.end(); ++wordEnd) {
-            if (*wordEnd == ' ') {
-                reverse(wordStart, wordEnd);
-                wordStart = wordEnd;
-                ++wordStart;
-            }
-        }
-        reverse(wordStart, s.end());
-        return move(s);
+ public:
+  string reverseWords(string s) {
+    int i = 0;
+    int j = 0;
+
+    while (i < s.length()) {
+      while (i < j || i < s.length() && s[i] == ' ')
+        ++i;
+      while (j < i || j < s.length() && s[j] != ' ')
+        ++j;
+      reverse(s.begin() + i, s.begin() + j);
     }
+
+    return s;
+  }
 };
