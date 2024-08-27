@@ -1,23 +1,31 @@
 # Time complexity: O(n)
 # Space complexity: O(1)
 class Solution:
-    def findUnsortedSubarray(self, nums: List[int]) -> int:
-        maxi = nums[0]
-        last = -1
-        
-        for i in range(len(nums)):
-            maxi = max(maxi, nums[i])
-            if nums[i] < maxi:
-                last = i
-        
-        if last == -1:
-            return 0
-        
-        mini = nums[-1]
-        first = -1
-        for i in range(len(nums)-1, -1, -1):
-            mini = min(mini, nums[i])
-            if nums[i] > mini:
-                first = i
-        
-        return last - first + 1
+  def findUnsortedSubarray(self, nums: List[int]) -> int:
+    mn = math.inf
+    mx = -math.inf
+    flag = False
+
+    for i in range(1, len(nums)):
+      if nums[i] < nums[i - 1]:
+        flag = True
+      if flag:
+        mn = min(mn, nums[i])
+
+    flag = False
+
+    for i in reversed(range(len(nums) - 1)):
+      if nums[i] > nums[i + 1]:
+        flag = True
+      if flag:
+        mx = max(mx, nums[i])
+
+    for l in range(len(nums)):
+      if nums[l] > mn:
+        break
+
+    for r, num in reversed(list(enumerate(nums))):
+      if num < mx:
+        break
+
+    return 0 if l >= r else r - l + 1
