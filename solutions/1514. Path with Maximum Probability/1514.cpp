@@ -1,5 +1,5 @@
-// Time complexity: O(mlogn)
-// Space complexity: O(m+n)
+// Time complexity: O((V+E)logV)
+// Space complexity: O(V+E)
 class Solution {
  public:
   double maxProbability(int n, const vector<vector<int>>& edges, 
