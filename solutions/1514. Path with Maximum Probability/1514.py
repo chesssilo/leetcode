@@ -1,8 +1,14 @@
-# Time complexity: O((V+E)logV)
-# Space complexity: O(V+E)
+# Time complexity: O(E+VlogV)
+# Space complexity: O(E+V)
 class Solution:
-  def maxProbability(self, n: int, edges: List[List[int]],
-                     succProd: List[float], start: int, end: int) -> float:
+  def maxProbability(
+    self, 
+    n: int, 
+    edges: List[List[int]],
+    succProd: List[float], 
+    start: int, 
+    end: int
+  ) -> float:
     graph = [[] for _ in range(n)]
     maxHeap = [(-1.0, start)]
     seen = [False] * n

@@ -1,9 +1,14 @@
-// Time complexity: O((V+E)logV)
-// Space complexity: O(V+E)
+// Time complexity: O(E+VlogV)
+// Space complexity: O(E+V)
 class Solution {
  public:
-  double maxProbability(int n, const vector<vector<int>>& edges, 
-                        const vector<double>& succProb, int start, int end) {
+  double maxProbability(
+    int n, 
+    const vector<vector<int>>& edges, 
+    const vector<double>& succProb, 
+    int start, 
+    int end
+  ) {
     vector<vector<pair<int, double>>> graph(n);
     priority_queue<pair<double, int>> maxHeap;  
     maxHeap.emplace(1.0, start);

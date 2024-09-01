@@ -1,5 +1,5 @@
-// Time complexity: O((V+E)logV)
-// Space complexity: O(V+E)
+// Time complexity: O(E+VlogV)
+// Space complexity: O(E+V)
 use std::collections::BinaryHeap;
 use std::cmp::Ordering;
 
