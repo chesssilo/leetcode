@@ -1,16 +1,22 @@
 # Time complexity: O(nm)
 # Space complexity: O(n+m)
 class Solution:
-  def isSubPath(self, head: Optional[ListNode], 
-                root: Optional[TreeNode]) -> bool:
+  def isSubPath(
+      self, 
+      head: Optional[ListNode], 
+      root: Optional[TreeNode]
+  ) -> bool:
     if not root:
       return False
     return self._isContinuousSubPath(head, root) or \
            self.isSubPath(head, root.left) or \
            self.isSubPath(head, root.right)
 
-  def _isContinuousSubPath(self, head: Optional[ListNode], 
-                           root: Optional[TreeNode]) -> bool:
+  def _isContinuousSubPath(
+      self, 
+      head: Optional[ListNode], 
+      root: Optional[TreeNode]
+  ) -> bool:
     if not head:
       return True
     if not root:
