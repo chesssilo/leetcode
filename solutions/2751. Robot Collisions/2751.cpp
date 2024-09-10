@@ -9,9 +9,11 @@ struct Robot {
 
 class Solution {
 public:
-  vector<int> survivedRobotsHealths(vector<int> &positions,
-                                    vector<int> &helths,
-                                    string directions) {
+  vector<int> survivedRobotsHealths(
+    vector<int> &positions,
+    vector<int> &helths,
+    string directions
+  ) {
     vector<int> ans;
     vector<Robot> robots;
     vector<Robot> stack;
