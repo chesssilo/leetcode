@@ -3,14 +3,15 @@
 class Solution {
  public:
   ListNode* reverseList(ListNode* head) {
-    ListNode* revers = nullptr;
+    ListNode* prev = nullptr;
 
-    while (head) {
+    while (head != nullptr) {
       ListNode* next = head->next;
-      head->next = revers;
-      revers = head;
+      head->next = prev;
+      prev = head;
       head = next;
     }
-    return revers;
+
+    return prev;
   }
 };
