@@ -8,7 +8,12 @@ class Solution {
     return solve(root, targetSum, 0, mpp);
   }
  private:
-  int solve(TreeNode* root, int k, long long sum, unordered_map<long long, int>& mpp){
+  int solve(
+    TreeNode* root, 
+    int k, 
+    long long sum, 
+    unordered_map<long long, int>& mpp
+  ){
     if(root == nullptr)
       return 0;
             
