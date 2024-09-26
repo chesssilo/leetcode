@@ -3,9 +3,9 @@ My leetcode solutions in C++/Python/Rust/MySQL/TypeScript.
 
 <div align="center">
 <br/>
-<img src="https://img.shields.io/badge/Solved-786/3298%20=%2023%25-blue.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Solved-787/3298%20=%2023%25-blue.svg?style=flat-square" />
 <br/>
 <img src="https://img.shields.io/badge/Easy-307/826-5CB85D.svg?style=flat-square" />
 <img src="https://img.shields.io/badge/Medium-378/1726-F0AE4E.svg?style=flat-square" />
-<img src="https://img.shields.io/badge/Hard-101/746-D95450.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Hard-102/746-D95450.svg?style=flat-square" />
 </div>
