@@ -1,5 +1,5 @@
 // Time complexity: O(n)
-// Space complexity: O(1)
+// Space complexity: O(k)
 class Solution {
  public:
   bool canArrange(const vector<int>& arr, int k) {

@@ -1,5 +1,5 @@
 # Time complexity: O(n)
-# Space complexity: O(1)
+# Space complexity: O(k)
 class Solution:
   def canArrange(self, arr: List[int], k: int) -> bool:
     count = [0] * k

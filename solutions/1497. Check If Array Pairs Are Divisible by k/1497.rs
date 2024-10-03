@@ -1,5 +1,5 @@
 // Time complexity: O(n)
-// Space complexity: O(1)
+// Space complexity: O(k)
 impl Solution {
   pub fn can_arrange(arr: Vec<i32>, k: i32) -> bool {
     let mut count = vec![0; k as usize];
