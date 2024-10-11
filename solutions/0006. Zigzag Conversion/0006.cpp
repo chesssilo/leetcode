@@ -1,29 +1,24 @@
 // Time complexity: O(n)
 // Space complexity: O(n)
 class Solution {
-public:
-    string convert(const string& s, int numRows) {
-        if (s.empty())
-            return "";
-        if (s.length() == 1)
-            return s;
-        if (numRows == 1)
-            return s;
+ public:
+  string convert(string_view s, int numRows) {
+    string ans;
+    vector<vector<char>> rows(numRows);
+    int k = 0;
+    int direction = (numRows == 1) - 1;
 
-        string ans;
-        vector<string> rows(min(numRows, int(s.length())));
-        int currRow = 0;
-        bool goDown = false;
-
-        for (const char c : s) {
-            rows[currRow] += c;
-            if (currRow == 0 || currRow == numRows - 1)
-                goDown = !goDown;
-            currRow += goDown ? 1: -1;    
-        }
-        for (string_view row : rows)
-            ans += row;
-
-        return ans;             
+    for (const char c : s) {
+      rows[k].push_back(c);
+      if (k == 0 || k == numRows - 1)
+        direction *= -1;
+      k += direction;
     }
+
+    for (const vector<char>& row : rows)
+      for (const char c : row)
+        ans += c;
+
+    return ans;
+  }
 };
