@@ -1,5 +1,5 @@
-// Time complexity: O(mlogm)
-// Space complexity: O(n)
+// Time complexity: O(mlogm+mlogn)
+// Space complexity: O(n+sort)
 struct T {
   long endTime;
   int roomId;
