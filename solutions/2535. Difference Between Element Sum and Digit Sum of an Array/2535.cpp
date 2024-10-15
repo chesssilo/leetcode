@@ -1,16 +1,27 @@
+// Time complexity: O(nm)
+// Space complexity: O(m)
 class Solution {
-public:
-    int differenceOfSum(vector<int>& nums) {
-        int Sum = accumulate(nums.begin(), nums.end(), 0);
-        int SumNum = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            while (nums[i] > 9) {
-                int temp = nums[i] % 10;
-                SumNum += temp;
-                nums[i] /= 10;
-            }
-            SumNum += nums[i];
-        }
-        return abs(Sum - SumNum);
+ public:
+  int differenceOfSum(const vector<int>& nums) {
+    const int elementSum = accumulate(nums.begin(), nums.end(), 0);
+    const int allDigitSum = getAllDigitSum(nums);
+    return abs(elementSum - allDigitSum);
+  }
+
+ private:
+  int getAllDigitSum(const vector<int>& nums) {
+    int allDigitSum = 0;
+    for (const int num : nums)
+      allDigitSum += getDigitSum(num);
+    return allDigitSum;
+  }
+
+  int getDigitSum(int num) {
+    int digitSum = 0;
+    while (num > 0) {
+      digitSum += num % 10;
+      num /= 10;
     }
+    return digitSum;
+  }
 };
