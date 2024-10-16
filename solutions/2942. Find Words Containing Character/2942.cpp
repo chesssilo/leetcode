@@ -1,18 +1,14 @@
-// Time complexity: O(n + m)
-// Space complexity: O(n)
+// Time complexity: O(nm)
+// Space complexity: O(k)
 class Solution {
-public:
-    vector<int> findWordsContaining(const vector<string>& words, char x) {
-        vector<int> ans;
-        for (int i = 0; i < words.size(); ++i) {
-            for (int j = 0; j < words[i].size(); ++j) {
-                if (words[i][j] == x) {
-                    ans.push_back(i);
-                    break;
-                }
-            }
-        }
+ public:
+  vector<int> findWordsContaining(const vector<string>& words, char x) {
+    vector<int> ans;
 
-        return ans;
-    }
+    for (int i = 0; i < words.size(); ++i)
+      if (words[i].find(x) != string::npos)
+        ans.push_back(i);
+
+    return ans;
+  }
 };
