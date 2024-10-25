@@ -1,34 +1,26 @@
-// Time complexity: O(n)
-// Space complexity: O(1)
+// Time complexity: O(max(n, m))
+// Space complexity: O(max(n, m))
 class Solution {
-public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode prehead;
-        ListNode* node = l1;
-        prehead.next = node;
-        int sum = 0;
-        while (node) {
-            if (l1) {
-                sum += l1->val;
-                l1 = l1->next;
-            }
-            if (l2) {
-                sum += l2->val;
-                l2 = l2->next;
-            }
-            node->val = sum % 10;
-            sum /= 10;
-            if (!l1) {
-                if (l2) {
-                    node->next = l2;
-                }
-                else if (sum == 1) {
-                    ListNode* newNode = new ListNode(sum);
-                    node->next = newNode;
-                }
-            }
-            node = node->next;
-        }
-        return prehead.next;
+ public:
+  ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    ListNode dummy(0);
+    ListNode* curr = &dummy;
+    int carry = 0;
+
+    while (l1 != nullptr || l2 != nullptr || carry > 0) {
+      if (l1 != nullptr) {
+        carry += l1->val;
+        l1 = l1->next;
+      }
+      if (l2 != nullptr) {
+        carry += l2->val;
+        l2 = l2->next;
+      }
+      curr->next = new ListNode(carry % 10);
+      carry /= 10;
+      curr = curr->next;
     }
+
+    return dummy.next;
+  }
 };
