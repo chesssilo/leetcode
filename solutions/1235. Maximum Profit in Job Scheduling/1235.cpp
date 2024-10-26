@@ -1,28 +1,33 @@
 // Time complexity: O(sort)
 // Space complexity: O(n)
 class Solution {
-public:
-    int jobScheduling(const vector<int>& startTime, const vector<int>& endTime, const vector<int>& profit) {
-        int numJobs = profit.size();
-        vector<tuple<int, int, int>> jobs(numJobs);
+ public:
+  int jobScheduling(
+    const vector<int>& startTime, 
+    const vector<int>& endTime, 
+    const vector<int>& profit
+  ) {
+    int numJobs = profit.size();
+    vector<tuple<int, int, int>> jobs(numJobs);
 
-        for (int i = 0; i < numJobs; ++i) {
-            jobs[i] = {endTime[i], startTime[i], profit[i]};
-        }
-        
-        sort(jobs.begin(), jobs.end());
-        vector<int> dp(numJobs + 1);
+    for (int i = 0; i < numJobs; ++i)
+      jobs[i] = {endTime[i], startTime[i], profit[i]};
 
-        for (int i = 0; i < numJobs; ++i) {
-            auto [endTime, startTime, profit] = jobs[i];
+    ranges::sort(jobs);
+    vector<int> dp(numJobs + 1);
 
-            int latestNonConflictJobIndex = upper_bound(jobs.begin(), jobs.begin() + i, startTime, [&](int time, const auto& job) -> bool {
-                return time < get<0>(job);
-            }) - jobs.begin();
+    for (int i = 0; i < numJobs; ++i) {
+      auto [endTime, startTime, profit] = jobs[i];
 
-            dp[i + 1] = max(dp[i], dp[latestNonConflictJobIndex] + profit);
-        }
+      int latestNonConflictJobIndex = 
+        upper_bound(jobs.begin(), jobs.begin() + i, startTime, 
+          [&](int time, const auto& job) -> bool {
+            return time < get<0>(job);
+          }) - jobs.begin();
 
-        return dp[numJobs];      
+      dp[i + 1] = max(dp[i], dp[latestNonConflictJobIndex] + profit);
     }
+
+    return dp[numJobs];
+  }
 };

@@ -1,15 +1,17 @@
 # Time complexity: O(sort)
 # Space complexity: O(n)
 class Solution:
-    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
-        jobs =sorted(zip(endTime, startTime, profit))
+  def jobScheduling(
+    self, startTime: List[int], endTime: List[int], profit: List[int]
+  ) -> int:
+    jobs =sorted(zip(endTime, startTime, profit))
 
-        number_of_jobs = len(profit)
+    numberOfJobs = len(profit)
 
-        dp = [0] * (number_of_jobs + 1)
+    dp = [0] * (numberOfJobs + 1)
 
-        for i, (current_end_time, current_start_time, current_profit) in enumerate(jobs):
-            index = bisect_right(jobs, current_start_time, hi=i, key=lambda x: x[0])
-            dp[i + 1] = max(dp[i], dp[index] + current_profit)
+    for i, (_, currentStartTime, currentProfit) in enumerate(jobs):
+      index = bisect_right(jobs, currentStartTime, hi=i, key=lambda x: x[0])
+      dp[i + 1] = max(dp[i], dp[index] + currentProfit)
 
-        return dp[number_of_jobs]  
+    return dp[numberOfJobs]
