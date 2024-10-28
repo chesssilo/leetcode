@@ -1,15 +1,16 @@
+// Time complexity: O(d)
+// Space complexity: O(1)
 class Solution {
-public:
-    int subtractProductAndSum(int n) {
-        int sum = 0;
-        int product = 1;
+ public:
+  int subtractProductAndSum(int n) {
+    int prod = 1;
+    int summ = 0;
 
-        while (n > 0) {
-            int temp = n % 10;
-            sum += temp;
-            product *= temp;
-            n /= 10;
-        }
-        return product - sum;
+    for (; n > 0; n /= 10) {
+      prod *= n % 10;
+      summ += n % 10;
     }
+
+    return prod - summ;
+  }
 };

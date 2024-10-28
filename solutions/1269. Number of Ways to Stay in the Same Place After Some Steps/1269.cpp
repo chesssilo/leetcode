@@ -1,41 +1,26 @@
 // Time complexity: O(n*min(n,m))
 // Space complexity: O(n*min(n,m))
 class Solution {
-public:
-    vector<vector<int>> memo;
-    int MOD = 1e9 + 7;
-    int arrLen;
-    
-    int dp(int curr, int remain) {
-        if (remain == 0) {
-            if (curr == 0) {
-                return 1;
-            }
-            
-            return 0;
-        }
-        
-        if (memo[curr][remain] != -1) {
-            return memo[curr][remain];
-        }
+ public:
+  int numWays(int steps, int arrLen) {
+    constexpr int kMod = 1'000'000'007;
+    const int n = min(arrLen, steps / 2 + 1);
+    vector<long> dp(n);
+    dp[0] = 1;
 
-        int ans = dp(curr, remain - 1);
-        if (curr > 0) {
-            ans = (ans + dp(curr - 1, remain - 1)) % MOD;
-        }
-        
-        if (curr < arrLen - 1) {
-            ans = (ans + dp(curr + 1, remain - 1)) % MOD;
-        }
-        
-        memo[curr][remain] = ans;
-        return ans;
+    while (steps-- > 0) {
+      vector<long> newDp(n);
+      for (int i = 0; i < n; ++i) {
+        newDp[i] = dp[i];
+        if (i - 1 >= 0)
+          newDp[i] += dp[i - 1];
+        if (i + 1 < n)
+          newDp[i] += dp[i + 1];
+        newDp[i] %= kMod;
+      }
+      dp = move(newDp);
     }
-    
-    int numWays(int steps, int arrLen) {
-        arrLen = min(arrLen, steps);
-        this->arrLen = arrLen;
-        memo = vector(arrLen, vector(steps + 1, -1));
-        return dp(0, steps);
-    }
+
+    return dp[0];
+  }
 };

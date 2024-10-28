@@ -1,30 +1,31 @@
 // Time complexity: O(nlog(max(nums)−min(nums)))
 // Space complexity: O(1)
 class Solution {
-public:
-    long long minCost(vector<int>& nums, vector<int>& cost) {
-        long long answer = getCost(nums, cost, nums[0]);
-        int left = *min_element(nums.begin(), nums.end());
-        int right = *max_element(nums.begin(), nums.end());
+ public:
+  long long minCost(const vector<int>& nums, const vector<int>& cost) {
+    long long ans = 0;
+    int l = ranges::min(nums);
+    int r = ranges::max(nums);
 
-        while (left < right) {
-            int mid = (left + right) / 2;
-            long long cost1 = getCost(nums, cost, mid);
-            long long cost2 = getCost(nums, cost, mid + 1);
-            answer = min(cost1, cost2);
-            if (cost1 > cost2)
-                left = mid + 1;
-            else
-                right = mid;
-        }
-        return answer;
+    while (l < r) {
+      const int m = (l + r) / 2;
+      const long cost1 = getCost(nums, cost, m);
+      const long cost2 = getCost(nums, cost, m + 1);
+      ans = min(cost1, cost2);
+      if (cost1 < cost2)
+        r = m;
+      else
+        l = m + 1;
     }
 
-private: 
-    long long getCost(vector<int>& nums, vector<int>& cost, int base) {
-        long long result = 0;
-        for (int i = 0; i < nums.size(); ++i)
-            result += 1L * abs(nums[i] - base) * cost[i];
-        return result;
-    }   
+    return ans;
+  }
+
+ private:
+  long getCost(const vector<int>& nums, const vector<int>& cost, int target) {
+    long res = 0;
+    for (int i = 0; i < nums.size(); ++i)
+      res += static_cast<long>(abs(nums[i] - target)) * cost[i];
+    return res;
+  }
 };
