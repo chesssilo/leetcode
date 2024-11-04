@@ -1,28 +1,24 @@
-// Time Complexity: O(N)
-// Space Complexity: O(N)
+// Time Complexity: O(n)
+// Space Complexity: O(n)
 class Solution {
-public:
-  vector<int> shortestToChar(const string &s, char c) {
-    const int INF =(int)s.size();
-    vector<int> res(s.size(), INF);
-    int dist = INF;
-    for (int i = 0; i < (int)s.size(); i++) {
-      if (s[i] == c) {
-        dist = 0;
-      } else {
-        dist++;
-      }
-      res[i] = dist;
+ public:
+  vector<int> shortestToChar(string_view s, char c) {
+    const int n = s.length();
+    vector<int> ans(n);
+    int prev = -n;
+
+    for (int i = 0; i < n; ++i) {
+      if (s[i] == c)
+        prev = i;
+      ans[i] = i - prev;
     }
-    dist = INF;
-    for (int i = (int)s.size() - 1; i >= 0; i--) {
-      if (s[i] == c) {
-        dist = 0;
-      } else {
-        dist++;
-      }
-      res[i] = min(res[i], dist);
+
+    for (int i = prev - 1; i >= 0; --i) {
+      if (s[i] == c)
+        prev = i;
+      ans[i] = min(ans[i], prev - i);
     }
-    return res;
+
+    return ans;
   }
 };
