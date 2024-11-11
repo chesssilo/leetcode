@@ -29,5 +29,5 @@ class Solution {
         res |= 1 << i;
 
     return res;
-  }    
+  } 
 };
