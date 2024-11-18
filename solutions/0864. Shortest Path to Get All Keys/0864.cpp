@@ -1,3 +1,5 @@
+// Time Complexity: O(mn2^k)
+// Space Complexity: O(mn2^k)
 struct T {
   int i;
   int j;
@@ -7,7 +9,7 @@ struct T {
 
 class Solution {
  public:
-  int shortestPathAllKeys(vector<string>& grid) {
+  int shortestPathAllKeys(const vector<string>& grid) {
     const int m = grid.size();
     const int n = grid[0].length();
     const int keysCount = getKeysCount(grid);
