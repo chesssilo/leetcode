@@ -1,0 +1,15 @@
+// Time complexity: O(n+m)
+// Space complexity: O(n)
+class Solution {
+ public:
+  int numJewelsInStones(string_view jewels, string_view stones) {
+    int ans = 0;
+    unordered_set<char> jewelsSet(jewels.begin(), jewels.end());
+
+    for (const char stone : stones)
+      if (jewelsSet.contains(stone))
+        ++ans;
+
+    return ans;
+  }
+};
