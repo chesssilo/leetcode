@@ -5,9 +5,7 @@ use std::cell::RefCell;
 
 impl Solution {
   pub fn get_directions(
-    root: Option<Rc<RefCell<TreeNode>>>,
-    start_value: i32,
-    dest_value: i32
+    root: Option<Rc<RefCell<TreeNode>>>, start_value: i32, dest_value: i32
   ) -> String {
     let mut path_to_start = String::new();
     let mut path_to_dest = String::new();
@@ -26,9 +24,7 @@ impl Solution {
   }
 
   fn dfs(
-    root: &Option<Rc<RefCell<TreeNode>>>, 
-    val: i32, 
-    path: &mut String
+    root: &Option<Rc<RefCell<TreeNode>>>, val: i32, path: &mut String
   ) -> bool {
     if let Some(node) = root {
       let node = node.borrow();

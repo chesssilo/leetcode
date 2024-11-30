@@ -7,5 +7,5 @@ My leetcode solutions in C++/Python/Rust/MySQL/TypeScript.
 <br/>
 <img src="https://img.shields.io/badge/Easy-313/839-5CB85D.svg?style=flat-square" />
 <img src="https://img.shields.io/badge/Medium-423/1760-F0AE4E.svg?style=flat-square" />
-<img src="https://img.shields.io/badge/Hard-111/769-D95450.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Hard-113/770-D95450.svg?style=flat-square" />
 </div>

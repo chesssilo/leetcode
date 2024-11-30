@@ -1,8 +1,9 @@
 # Time complexity: O(n)
 # Space complexity: O(n)
 class Solution:
-  def getDirections(self, root: Optional[TreeNode], startValue: int,
-                    destValue: int) -> str:
+  def getDirections(
+    self, root: Optional[TreeNode], startValue: int, destValue: int
+  ) -> str:
     def dfs(root: Optional[TreeNode], val: int, path: List[chr]) -> bool:
       if root.val == val:
         return True
