@@ -1,12 +1,12 @@
+// Time complexity: O(1)
+// Space complexity: O(1)
 class Solution {
-public:
-    int numberOfSteps(int num) {
-        int stepsCount = 0;
-        while (num > 0) {
-            if (num % 2 == 0) num /= 2;
-            else  num -= 1;
-            stepsCount++;
-        }
-        return stepsCount;
-    }
+ public:
+  int numberOfSteps(unsigned num) {
+    if (num == 0)
+      return 0;
+    const int subtractSteps = popcount(num);
+    const int divideSteps = 31 - __builtin_clz(num);
+    return subtractSteps + divideSteps;
+  }
 };
