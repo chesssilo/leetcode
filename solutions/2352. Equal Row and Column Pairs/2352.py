@@ -1,5 +1,5 @@
 # Time complexity: O(n^3)
-# Space complexity : O(1)
+# Space complexity: O(1)
 class Solution:
   def equalPairs(self, grid: List[List[int]]) -> int:
     n = len(grid)
